@@ -20,7 +20,8 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [MainController::class, 'home']);
 Route::get('/about', [MainController::class, 'about']);
 Route::get('/stack', [MainController::class, 'stack']);
-Route::get('/something', [MainController::class, 'something']);
+Route::get('/contact', [MainController::class, 'contact']);
+
 
 Route::middleware("auth")->group(function()
 {

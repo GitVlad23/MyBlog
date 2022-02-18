@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class MainController extends Controller
 {
@@ -21,8 +22,8 @@ class MainController extends Controller
         return view('stack');
     }
 
-    public function something()
+    public function contact()
     {
-        return view('something');
+        return view('contact');
     }
 }
