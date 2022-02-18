@@ -99,14 +99,28 @@
         </div>
     @endguest
 
-    <br>
 
-    <h1>All comments</h1>
-    @foreach($comments as $el)
-        <div class="alert alert-warning">
-            <h3>{{ $el->name }}</h3>
-            <p>{{ $el->title }}</p>
-            <p>{{ $el->message }}</p>
+    <div style=".center; position: relative;">
+        <div class="align-items-center p-3 px-md-4" style="
+        margin: 0;
+        height: 400px;
+        top: 50%;
+        position: absolute;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        width: 1500px;">
+
+                <h1 class="my-0 mr-md-auto font-weight-normal" style="border-top: 3px solid darkorange; font-size: 75px;">All comments</h1><br>
+
+            @foreach($comments as $el)
+                <div class="alert alert-warning">
+                    <h3 style="font-size: 35px;"><strong>User: </strong>{{ $el->name }}</h3>
+                    <p style="font-size: 25px;"><strong>Title: </strong>{{ $el->title }}</p>
+                    <p style="font-size: 20px;"><strong>Message: </strong>{{ $el->message }}</p>
+                </div>
+            @endforeach
+
         </div>
-    @endforeach
+    </div>
 @endsection

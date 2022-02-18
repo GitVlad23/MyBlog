@@ -27,7 +27,6 @@ Route::get('/contact', [ContactController::class, 'contact']);
 Route::middleware("auth")->group(function()
 {
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/contact', [ContactController::class, 'contact']);
     Route::post('/contact/check', [ContactController::class, 'contact_check']);
 });
 

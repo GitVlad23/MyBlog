@@ -16,21 +16,22 @@ class ContactController extends Controller
 
     public function contact_check(Request $request)
     {
-        $user = auth()->user();
-
         $valid = $request->validate([
             'title' => 'required|min:4',
             'message' => 'required|min:15|max:500'
         ]);
 
+        $user = new User();
+        $user->contact(1);
+        $name = $user->name;
+
         $comment = new Contact();
-        $comment->name = $user->getAuthIdentifierName('name');
+        $comment->name = $name;
         $comment->title = $request->input('title');
         $comment->message = $request->input('message');
 
         $comment->save();
 
-        return redirect()->route('contact');
+        return redirect('contact');
     }
-
 }
