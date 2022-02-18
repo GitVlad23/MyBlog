@@ -21,9 +21,4 @@ class MainController extends Controller
     {
         return view('stack');
     }
-
-    public function contact()
-    {
-        return view('contact');
-    }
 }

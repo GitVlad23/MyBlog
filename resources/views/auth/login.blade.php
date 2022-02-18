@@ -60,8 +60,8 @@
                     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4" style="height: 10px;">
                         <button type="submit" class="btn btn-success">Log in</button>
                         <div class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                            <a href="/auth/forgot" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Forgot password?</a>
-                            <a href="#" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Registration</a>
+                            <a href="forgot" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Forgot password?</a>
+                            <a href="register" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Registration</a>
                         </div>
                     </div>
 

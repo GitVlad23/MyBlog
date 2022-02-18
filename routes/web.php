@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,14 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [MainController::class, 'home']);
 Route::get('/about', [MainController::class, 'about']);
 Route::get('/stack', [MainController::class, 'stack']);
-Route::get('/contact', [MainController::class, 'contact']);
+Route::get('/contact', [ContactController::class, 'contact']);
 
 
 Route::middleware("auth")->group(function()
 {
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/contact', [ContactController::class, 'contact']);
+    Route::post('/contact/check', [ContactController::class, 'contact_check']);
 });
 
 Route::middleware("guest")->group(function()

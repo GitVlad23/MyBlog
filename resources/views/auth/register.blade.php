@@ -69,7 +69,7 @@
                     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4" style="height: 10px;">
                         <button type="submit" class="btn btn-success">Register</button>
                         <div class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                            <a href="#" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Have an account?</a>
+                            <a href="login" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Have an account?</a>
                         </div>
                     </div>
 
