@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ContactController extends Controller
 {
@@ -16,17 +18,30 @@ class ContactController extends Controller
 
     public function contact_check(Request $request)
     {
+        $user = auth()->user();
+
         $valid = $request->validate([
             'title' => 'required|min:4',
             'message' => 'required|min:15|max:500'
         ]);
 
-        $user = new User();
-        $user->contact(1);
+        /*$user = Contact::create([
+            'name' => $valid['name'],
+            'title' => $valid['title'],
+            'message' => $valid['message']
+        ]);*/
+
+        /*$user = User::where(['name' => $valid['name']])->first();*/
+
+        /*$user = new User();
+        $user->contact(0);
         $name = $user->name;
+        $user->save();*/
+
+        /*$data = User::all();*/
 
         $comment = new Contact();
-        $comment->name = $name;
+        $comment->name = $user->name;
         $comment->title = $request->input('title');
         $comment->message = $request->input('message');
 
