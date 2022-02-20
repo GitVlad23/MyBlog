@@ -109,15 +109,17 @@
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
-        width: 1500px;">
+        width: 1000px;">
 
                 <h1 class="my-0 mr-md-auto font-weight-normal" style="border-top: 3px solid darkorange; font-size: 75px;">All comments</h1><br>
 
             @foreach($comments as $el)
                 <div class="alert alert-warning">
-                    <h3 style="font-size: 35px;"><strong>User: </strong>{{ $el->name }}</h3>
+                    <p style="font-size: 25px;"><strong>User: </strong>{{ $el->name }}</p>
+                    <h1 style="border-bottom: 1px solid"></h1>
                     <p style="font-size: 25px;"><strong>Title: </strong>{{ $el->title }}</p>
-                    <p style="font-size: 20px;"><strong>Message: </strong>{{ $el->message }}</p>
+                    <h1 style="border-bottom: 1px solid"></h1>
+                    <p style="font-size: 24px;"><strong>Message: </strong>{{ $el->message }}</p>
                 </div>
             @endforeach
 
