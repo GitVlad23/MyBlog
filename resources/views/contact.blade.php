@@ -7,6 +7,12 @@
 
     <?php $user = auth()->user(); ?>
 
+    <?php
+        use App\Models\Answer; $answers = Answer::all()->where('message');
+    ?>
+
+    <!-- Need to put there an Answer_comments code later -->
+
     <div style=".center; height: 50em; position: relative;">
         <div class="d-inline-flex flex-column flex-md-row align-items-center p-3 px-md-4" style="
         margin: 0;
@@ -120,9 +126,33 @@
                     <p style="font-size: 25px;"><strong>Title: </strong>{{ $el->title }}</p>
                     <h1 style="border-bottom: 1px solid"></h1>
                     <p style="font-size: 24px;"><strong>Message: </strong>{{ $el->message }}</p>
+
+                    @auth("web")
+                        <form method="POST" action="/contact/process">
+                            @csrf
+
+                            <input type="text" name="message" id="message" placeholder="{{ $user->name }}: answer" class="form-control"><br>
+                            <button class="btn btn-success">Answer</button>
+                        </form>
+                    @endauth
                 </div>
             @endforeach
 
+                {{--@foreach($comments as $el)
+                    <p style="font-size: 25px;"><strong>User: </strong>{{ $el->name }}</p>
+                @endforeach--}}
+
+                @foreach($answers as $i)
+                    <div class="alert alert-warning">
+
+                        <p style="font-size: 25px;"><strong>User: </strong>{{ $i->name }}</p>
+
+                        <h1 style="border-bottom: 1px solid"></h1>
+                        <p style="font-size: 24px;"><strong>Message: </strong>{{ $i->message }}</p>
+                    </div>
+                @endforeach
+
         </div>
     </div>
+
 @endsection
