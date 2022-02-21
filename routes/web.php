@@ -28,6 +28,8 @@ Route::middleware("auth")->group(function()
 {
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/contact/check', [ContactController::class, 'contact_check']);
+
+    Route::post('/contact/process', [ContactController::class, 'answer_process']);
 });
 
 Route::middleware("guest")->group(function()
