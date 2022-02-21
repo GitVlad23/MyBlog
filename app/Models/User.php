@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function events()
     {
-        return $this->hasOne(Contact::class, 'name', 'name');
+        return $this->hasMany(Contact::class, 'name', 'name');
     }
 }
