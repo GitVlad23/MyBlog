@@ -128,7 +128,10 @@
                                     <h1 style="border-bottom: 1px solid"></h1>
                     <p style="font-size: 24px;"><strong>Message: </strong>{{ $el->message }}</p>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e5620f6a62fe70e4321edcac987055b94562f6ca
                     @auth("web")
                         <form method="POST" action="/contact/process">
                             @csrf
@@ -137,6 +140,7 @@
                             <button class="btn btn-success">Answer</button>
                         </form>
                     @endauth
+<<<<<<< HEAD
 
                 </div>
             @endforeach
@@ -158,8 +162,24 @@
                     <p style="font-size: 25px;"><strong>User: </strong>{{ $i->name }}</p>
                     <h1 style="border-bottom: 1px solid"></h1>
                     <p style="font-size: 24px;"><strong>Message: </strong>{{ $i->message }}</p>
+=======
+>>>>>>> e5620f6a62fe70e4321edcac987055b94562f6ca
                 </div>
             @endforeach
+
+                {{--@foreach($comments as $el)
+                    <p style="font-size: 25px;"><strong>User: </strong>{{ $el->name }}</p>
+                @endforeach--}}
+
+                @foreach($answers as $i)
+                    <div class="alert alert-warning">
+
+                        <p style="font-size: 25px;"><strong>User: </strong>{{ $i->name }}</p>
+
+                        <h1 style="border-bottom: 1px solid"></h1>
+                        <p style="font-size: 24px;"><strong>Message: </strong>{{ $i->message }}</p>
+                    </div>
+                @endforeach
 
         </div>
     </div>

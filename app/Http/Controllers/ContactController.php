@@ -27,31 +27,13 @@ class ContactController extends Controller
         ]);
 
         $comment = new Contact();
+
+        $comment = new Answer();
         $comment->name = $user->name;
         $comment->title = $request->input('title');
         $comment->message = $request->input('message');
 
         $comment->save();
-
-        return redirect('contact');
-    }
-
-    public function answer_process(Request $request)
-    {
-        $user = auth()->user();
-
-        $valid = $request->validate([
-            'message' => 'required|min:15|max:500'
-        ]);
-
-        $comment = new Contact();
-        $answer = new Answer();
-        $comment->comment_id = uniqid();
-        $answer->user_id = Contact::all('user_id');
-        $answer->name = $user->name;
-        $answer->message = $request->input('message');
-
-        $answer->save();
 
         return redirect('contact');
     }
