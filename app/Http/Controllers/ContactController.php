@@ -28,7 +28,6 @@ class ContactController extends Controller
 
         $comment = new Contact();
 
-        $comment = new Answer();
         $comment->name = $user->name;
         $comment->title = $request->input('title');
         $comment->message = $request->input('message');
