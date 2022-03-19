@@ -132,10 +132,6 @@
                 </div>
             @endforeach
 
-                {{--@foreach($comments as $el)
-                    <p style="font-size: 25px;"><strong>User: </strong>{{ $el->name }}</p>
-                @endforeach--}}
-
         </div>
     </div>
 
