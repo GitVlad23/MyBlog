@@ -26,22 +26,7 @@ class ContactController extends Controller
             'message' => 'required|min:15|max:500'
         ]);
 
-        /*$user = Contact::create([
-            'name' => $valid['name'],
-            'title' => $valid['title'],
-            'message' => $valid['message']
-        ]);*/
-
-        /*$user = User::where(['name' => $valid['name']])->first();*/
-
-        /*$user = new User();
-        $user->contact(0);
-        $name = $user->name;
-        $user->save();*/
-
-        /*$data = User::all();*/
-
-        $comment = new Answer();
+        $comment = new Contact();
         $comment->name = $user->name;
         $comment->title = $request->input('title');
         $comment->message = $request->input('message');
@@ -59,7 +44,10 @@ class ContactController extends Controller
             'message' => 'required|min:15|max:500'
         ]);
 
+        $comment = new Contact();
         $answer = new Answer();
+        $comment->comment_id = uniqid();
+        $answer->user_id = Contact::all('user_id');
         $answer->name = $user->name;
         $answer->message = $request->input('message');
 

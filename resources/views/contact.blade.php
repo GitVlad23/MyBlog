@@ -120,12 +120,14 @@
                 <h1 class="my-0 mr-md-auto font-weight-normal" style="border-top: 3px solid darkorange; font-size: 75px;">All comments</h1><br>
 
             @foreach($comments as $el)
-                <div class="alert alert-warning">
+                <div id="{{ $el->user_id }}" class="alert alert-warning">
+                    
                     <p style="font-size: 25px;"><strong>User: </strong>{{ $el->name }}</p>
-                    <h1 style="border-bottom: 1px solid"></h1>
+                                    <h1 style="border-bottom: 1px solid"></h1>
                     <p style="font-size: 25px;"><strong>Title: </strong>{{ $el->title }}</p>
-                    <h1 style="border-bottom: 1px solid"></h1>
+                                    <h1 style="border-bottom: 1px solid"></h1>
                     <p style="font-size: 24px;"><strong>Message: </strong>{{ $el->message }}</p>
+
 
                     @auth("web")
                         <form method="POST" action="/contact/process">
@@ -135,22 +137,29 @@
                             <button class="btn btn-success">Answer</button>
                         </form>
                     @endauth
+
                 </div>
             @endforeach
 
-                {{--@foreach($comments as $el)
-                    <p style="font-size: 25px;"><strong>User: </strong>{{ $el->name }}</p>
-                @endforeach--}}
-
+            {{--@if("$comments->user_id == $answers->user_id")
                 @foreach($answers as $i)
                     <div class="alert alert-warning">
-
                         <p style="font-size: 25px;"><strong>User: </strong>{{ $i->name }}</p>
-
                         <h1 style="border-bottom: 1px solid"></h1>
                         <p style="font-size: 24px;"><strong>Message: </strong>{{ $i->message }}</p>
                     </div>
                 @endforeach
+            @endif--}}
+
+            @foreach($answers as $i)
+                <div class="alert alert-warning">
+                    <p style="font-size: 25px;"><strong>User_id: </strong>{{ $i->user_id }}</p>
+                    <h1 style="border-bottom: 1px solid"></h1>
+                    <p style="font-size: 25px;"><strong>User: </strong>{{ $i->name }}</p>
+                    <h1 style="border-bottom: 1px solid"></h1>
+                    <p style="font-size: 24px;"><strong>Message: </strong>{{ $i->message }}</p>
+                </div>
+            @endforeach
 
         </div>
     </div>
