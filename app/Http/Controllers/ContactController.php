@@ -13,8 +13,23 @@ class ContactController extends Controller
 {
     public function contact()
     {
-        $comments = new Contact();
-        return view('contact', ['comments' => $comments->all()]);
+        if(Auth::check())
+        {
+            $comments = Contact::where(function($query)
+            {
+                return $query->where('user_id', Auth::User()->user_id);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+            return view('contact', compact('comments'));
+        }
+
+        return view('home');
+
+        // $comments = new Contact();
+
+        // return view('contact', ['comments' => $comments->all()]);
     }
 
     public function contact_check(Request $request)
@@ -35,5 +50,35 @@ class ContactController extends Controller
         $comment->save();
 
         return redirect('contact');
+    }
+
+    public function contact_reply(Request $request, $commentId)
+    {
+        $this->validate($request, [
+            "reply-{$commentId}" => 'required|max:1000'
+        ]);
+
+
+
+        $comment = Contact::notReply()->find($commentId);
+
+        if( ! $comment ) 
+        {
+            redirect()->route('home');
+        }
+
+
+
+        $user = auth()->user();
+
+        $reply = new Contact();
+        $reply->name = $user->name;
+        $reply->message = $request->input("reply-{$comment->id}");
+        $reply->User()->associate( Auth::User() );
+
+        $comment->replies()->save($reply);
+
+
+        return redirect()->back();
     }
 }
