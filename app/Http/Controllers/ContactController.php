@@ -41,7 +41,11 @@ class ContactController extends Controller
             'message' => 'required|min:15|max:500'
         ]);
 
+
         $comment = new Contact();
+
+
+        $comment = new Answer();
 
         $comment->name = $user->name;
         $comment->title = $request->input('title');
@@ -82,3 +86,6 @@ class ContactController extends Controller
         return redirect()->back();
     }
 }
+
+}
+
