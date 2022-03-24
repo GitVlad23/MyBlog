@@ -33,7 +33,7 @@
     </div>
 
     @auth("web")
-        <div style=".center; position: relative;">
+    <div style=".center; position: relative;">
         <div class="flex-column flex-md-row align-items-center p-3 px-md-4" style="
             position: absolute;
             margin-top: -560px;
@@ -113,24 +113,42 @@
 
                 <h1 class="my-0 mr-md-auto font-weight-normal" style="border-top: 3px solid darkorange; font-size: 75px;">All comments</h1><br>
 
-            @foreach($comments as $el)
-                <div class="alert alert-warning">
-                    <p style="font-size: 25px;"><strong>User: </strong>{{ $el->name }}</p>
-                    <h1 style="border-bottom: 1px solid"></h1>
-                    <p style="font-size: 25px;"><strong>Title: </strong>{{ $el->title }}</p>
-                    <h1 style="border-bottom: 1px solid"></h1>
-                    <p style="font-size: 24px;"><strong>Message: </strong>{{ $el->message }}</p>
+            @foreach($comments as $comment)
+                <div id="{{ $comment->user_id }}" class="alert alert-warning">
+                    
+                    <p style="font-size: 25px;"><strong>User: </strong>{{ $comment->name }}</p>
+                                    <h1 style="border-bottom: 1px solid"></h1>
+                    <p style="font-size: 25px;"><strong>Title: </strong>{{ $comment->title }}</p>
+                                    <h1 style="border-bottom: 1px solid"></h1>
+                    <p style="font-size: 24px;"><strong>Message: </strong>{{ $comment->message }}</p>
 
-                    @auth("web")
-                        <form method="POST" action="/contact/process">
-                            @csrf
 
-                            <input type="text" name="message" id="message" placeholder="{{ $user->name }}: answer" class="form-control"><br>
-                            <button class="btn btn-success">Answer</button>
-                        </form>
-                    @endauth
+                @foreach($comment->replies as $reply)
+                    <div id="{{ $comment->user_id }}" class="alert alert-warning">
+                    
+                        <p style="font-size: 25px;"><strong>User: </strong>{{ $reply->name }}</p>
+                                    <h1 style="border-bottom: 1px solid"></h1>
+                        <p style="font-size: 24px;"><strong>Message: </strong>{{ $reply->message }}</p>
+
+                        <p style="font-size: 24px;">{{ $comment->created_at->diffForHumans() }}</p>
+                    </div>
+                @endforeach
+
+
+                    <form method="POST" action="{{ route('contact.reply', ['commentId' => $comment->id]) }}">
+                        @csrf
+
+                        <textarea name="reply-{{ $comment->id }}" class="form-control" placeholder="Comment"></textarea><br>
+                    
+                        <button type="submit" class="btn btn-success">Reply</button>
+                    </form>
+
+                    <p style="font-size: 24px;">{{ $comment->created_at->diffForHumans() }}</p>
+
                 </div>
             @endforeach
+
+
 
         </div>
     </div>

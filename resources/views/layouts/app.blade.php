@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{url('css/main.css')}}">
 </head>
 <body class="bg-dark text-white">
 
@@ -18,12 +20,12 @@
         <div class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 @auth("web")
                     <div class="d-inline-flex mt-2 mt-md-0 ms-md-auto" style="margin-right: 15px;">
-                        <a href="#" class="p-1 text-decoration-none" style="font-size: 30px; color: orange;">{{ $user->name; }}</a>
+                        <p onclick="easterFun(this)" class="p-1 text-decoration-none" style="font-size: 30px; color: orange;">{{ $user->name; }}</p>
                     </div>
                 @endauth
 
             <nav>
-                <div class="btn btn-warning" style="margin-top: 8px;">
+                <div class="btn btn-warning">
                 @auth("web")
                     <a href="/auth/logout" class="p-2 text-black text-decoration-none">Quit</a>
                 @endauth
@@ -44,3 +46,5 @@
 
 </body>
 </html>
+
+<script src="{{url('js/main.js')}}"></script>

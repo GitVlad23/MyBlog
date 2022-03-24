@@ -13,4 +13,14 @@ class Contact extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeNotReply($query)
+    {
+        return $query->whereNull('parent_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Contact::class, 'parent_id');
+    }
 }
